@@ -4,8 +4,17 @@ import '../components/Header.css';
 import { authContext } from '../ConTaxt/UserContext';
 
 const Header = () => {
-    const { user } = useContext(authContext);
-    console.log('context', user);
+    const { user, logOut } = useContext(authContext);
+    // console.log('context', user);
+
+    const logOutHandle = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch();
+
+    }
     return (
         <div>
             <div className="navbar bg-neutral">
@@ -19,6 +28,7 @@ const Header = () => {
                         <Link to='/register'>Register</Link>
                     </ul>
                     {user?.email && <span style={{ color: 'white' }}>Welcome {user.email}</span>}
+                    <button onClick={logOutHandle} className="btn btn-xs">Log Out</button>
                 </div>
             </div>
         </div>
