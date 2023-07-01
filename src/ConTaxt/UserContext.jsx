@@ -17,8 +17,16 @@ const UserContext = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    useEffect(() => {
+        const unsubcribe = onAuthStateChanged(auth, currantUser => {
+            setUser(currantUser);
+            // console.log('auth state change', createUser);
+        })
 
-
+        return () => {
+            unsubcribe();
+        }
+    }, [])
     const authInfo = { user, createUser, signIn };
 
 
