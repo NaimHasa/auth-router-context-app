@@ -28,7 +28,13 @@ const Header = () => {
                         <Link to='/register'>Register</Link>
                     </ul>
                     {user?.email && <span style={{ color: 'white' }}>Welcome {user.email}</span>}
-                    <button onClick={logOutHandle} className="btn btn-xs">Log Out</button>
+                    {
+                        user?.email ?
+                            <button onClick={logOutHandle} className="btn btn-xs">Log Out</button>
+                            : <Link to='/login'>
+                                <button className="btn btn-xs">Log In</button>
+                            </Link>
+                    }
                 </div>
             </div>
         </div>
